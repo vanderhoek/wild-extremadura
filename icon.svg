@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#2a5d3a"/>
+  <!-- Hills -->
+  <path d="M0 360 Q 90 290 180 340 T 360 320 T 512 350 V512 H0 Z" fill="#1d4429"/>
+  <path d="M0 410 Q 100 360 220 395 T 460 380 T 512 400 V512 H0 Z" fill="#143a20"/>
+  <!-- Sun -->
+  <circle cx="380" cy="160" r="48" fill="#f4d27a"/>
+  <!-- Soaring vulture silhouette -->
+  <path d="M120 200
+           C 150 180, 180 175, 210 188
+           C 220 178, 235 175, 248 184
+           C 260 175, 275 178, 285 188
+           C 315 175, 345 180, 375 200
+           C 345 196, 320 200, 295 210
+           C 282 218, 268 218, 256 212
+           C 244 218, 230 218, 217 210
+           C 192 200, 167 196, 120 200 Z"
+        fill="#f5f3ec"/>
+  <!-- Tree -->
+  <path d="M256 360 L 256 430" stroke="#3a2d1e" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="256" cy="350" rx="55" ry="40" fill="#5a8a3a"/>
+</svg>

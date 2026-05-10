@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#2a5d3a" />
+  <meta name="description" content="Wildlife, birding and nature sites of Extremadura, Spain — mapped and described." />
+  <title>Wild Extremadura</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Wild Extremadura</h1>
+    <p class="subtitle">Nature, wildlife & birding sites — based at La Tierra Verde</p>
+  </header>
+
+  <nav class="view-toggle" role="tablist" aria-label="View switcher">
+    <button id="tab-map"  class="tab active" role="tab" aria-selected="true"  aria-controls="view-map">Map</button>
+    <button id="tab-list" class="tab"        role="tab" aria-selected="false" aria-controls="view-list">List</button>
+  </nav>
+
+  <section class="filter-bar">
+    <input id="search" type="search" placeholder="Search sites or species…" aria-label="Search" />
+    <div id="type-filters" class="type-filters" aria-label="Filter by site type"></div>
+  </section>
+
+  <main>
+    <section id="view-map" class="view view-map" role="tabpanel" aria-labelledby="tab-map">
+      <div id="map" aria-label="Map of Extremadura wildlife sites"></div>
+      <div id="legend" class="legend"></div>
+    </section>
+
+    <section id="view-list" class="view view-list" role="tabpanel" aria-labelledby="tab-list" hidden>
+      <ul id="site-list" class="site-list"></ul>
+    </section>
+  </main>
+
+  <aside id="detail-panel" class="detail-panel" hidden aria-hidden="true">
+    <button class="detail-close" aria-label="Close details">&times;</button>
+    <div class="detail-content"></div>
+  </aside>
+
+  <div id="install-banner" class="install-banner" hidden>
+    <span>Install Wild Extremadura on your phone?</span>
+    <button id="install-btn">Install</button>
+    <button id="install-dismiss" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
