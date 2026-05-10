@@ -24,8 +24,9 @@ const TYPES = {
 function observationUrl(lat, lng) {
   // Bird observations within 10 km of the point, up to today's date.
   // POINT(lng lat) follows the standard GIS x-y order; %20 encodes the space.
+  // Hash params (species_group=1 = birds, rarity=0 = all) are static.
   const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  return `https://observation.org/fieldwork/observations/explore/?end_date=${today}&point=POINT(${lng}%20${lat})&distance=10`;
+  return `https://observation.org/fieldwork/observations/explore/?end_date=${today}&point=POINT(${lng}%20${lat})&distance=10#search=&species_group=1&rarity=0`;
 }
 
 // Reusable source library — referenced by id from each site's "sources" array
