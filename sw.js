@@ -1,7 +1,7 @@
 // Wild Extremadura — service worker
 // Cache-first for app shell, network-first for tile images.
 
-const CACHE = "wild-extremadura-v1";
+const CACHE = "wild-extremadura-v2";
 const SHELL = [
   "./",
   "./index.html",

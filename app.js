@@ -161,8 +161,9 @@ function getFiltered() {
     const haystack = [
       s.name,
       s.summary,
+      s.description,
       s.tips,
-      ...(s.highlights || []),
+      ...(s.birds || []),
       TYPES[s.type].label,
     ].join(" ").toLowerCase();
     return haystack.includes(state.search);
@@ -194,6 +195,17 @@ function openDetails(id) {
   state.selectedId = id;
   const t = TYPES[site.type];
   const gmaps = `https://www.google.com/maps/dir/?api=1&destination=${site.lat},${site.lng}`;
+  // Render multi-paragraph description, escaping per paragraph but preserving [n] refs as-is
+  const paragraphs = (site.description || "")
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${escapeHtml(p.trim())}</p>`)
+    .join("");
+  const birdsHtml = (site.birds || [])
+    .map((b) => `<li>${escapeHtml(b)}</li>`)
+    .join("");
+  const sourcesHtml = (site.sources || [])
+    .map((src, i) => `<li>[${i + 1}] <a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.title)}</a></li>`)
+    .join("");
   detailContent.innerHTML = `
     <h2>${escapeHtml(site.name)}</h2>
     <div class="meta">
@@ -202,9 +214,10 @@ function openDetails(id) {
       <span>~${site.durationHours} h visit</span>
     </div>
     <p class="summary">${escapeHtml(site.summary)}</p>
+    <section class="description">${paragraphs}</section>
     <section>
-      <h4>Highlights</h4>
-      <ul>${site.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
+      <h4>Common birds</h4>
+      <ul class="birds">${birdsHtml}</ul>
     </section>
     <section>
       <h4>Best season</h4>
@@ -214,13 +227,16 @@ function openDetails(id) {
       <h4>Tips</h4>
       <p class="tips">${escapeHtml(site.tips)}</p>
     </section>
+    ${sourcesHtml ? `<section><h4>Sources</h4><ol class="sources">${sourcesHtml}</ol></section>` : ""}
     <div class="detail-actions">
       <a class="btn" href="${gmaps}" target="_blank" rel="noopener">Directions</a>
+      <a class="btn btn-secondary" href="${site.waarnemingUrl}" target="_blank" rel="noopener">waarneming.nl (10 km)</a>
       ${site.website ? `<a class="btn btn-secondary" href="${site.website}" target="_blank" rel="noopener">Official site</a>` : ""}
     </div>
   `;
   detailPanel.hidden = false;
   detailPanel.setAttribute("aria-hidden", "false");
+  detailPanel.scrollTop = 0;
   // Centre map on site
   if (state.activeView === "map") {
     map.setView([site.lat, site.lng], Math.max(map.getZoom(), 11), { animate: true });

@@ -331,6 +331,66 @@ main {
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
+.detail-content .description {
+  margin-bottom: 0.85rem;
+}
+
+.detail-content .description p {
+  margin: 0 0 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.detail-content .description p:last-child {
+  margin-bottom: 0;
+}
+
+.detail-content ul.birds {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.15rem 0.75rem;
+  font-size: 0.82rem;
+}
+
+.detail-content ul.birds li {
+  padding-left: 0.7rem;
+  position: relative;
+  line-height: 1.35;
+}
+
+.detail-content ul.birds li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.detail-content ol.sources {
+  margin: 0;
+  padding-left: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.detail-content ol.sources li {
+  margin-bottom: 0.25rem;
+  color: var(--muted);
+}
+
+.detail-content ol.sources a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.detail-content ol.sources a:hover {
+  text-decoration: underline;
+}
+
 .detail-actions {
   display: flex;
   gap: 0.5rem;
