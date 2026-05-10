@@ -1,10 +1,8 @@
 // Wild Extremadura — sites database
 // Centre: La Tierra Verde Holiday Accommodations (SW Cáceres province)
 //
-// NOTE on waarneming.nl URL format:
-//   The radius-search URL uses the pattern below. waarneming.nl is bot-protected
-//   so this format is best-effort; if the link does not load the expected view,
-//   adjust the single waarnemingUrl() function and all 40 entries update.
+// External links use observation.org for bird observations within 10 km of
+// each site. The end_date is always today (computed at click time).
 
 const BASE = {
   name: "La Tierra Verde Holiday Accommodations",
@@ -23,9 +21,11 @@ const TYPES = {
   river:    { label: "River / Gorge",     color: "#3a9aa8" },
 };
 
-function waarnemingUrl(lat, lng) {
-  // Birds (species_group=1) within 10 km of the point
-  return `https://waarneming.nl/observations/?species_group=1&center=POINT(${lng}%20${lat})&radius=10000`;
+function observationUrl(lat, lng) {
+  // Bird observations within 10 km of the point, up to today's date.
+  // POINT(lng lat) follows the standard GIS x-y order; %20 encodes the space.
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  return `https://observation.org/fieldwork/observations/explore/?end_date=${today}&point=POINT(${lng}%20${lat})&distance=10`;
 }
 
 // Reusable source library — referenced by id from each site's "sources" array
@@ -1219,5 +1219,4 @@ function distanceKm(a, b) {
 // Annotate each site with computed fields
 SITES.forEach((s) => {
   s.distanceKm = distanceKm(BASE, s);
-  s.waarnemingUrl = waarnemingUrl(s.lat, s.lng);
 });

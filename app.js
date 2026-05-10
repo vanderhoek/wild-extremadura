@@ -230,7 +230,7 @@ function openDetails(id) {
     ${sourcesHtml ? `<section><h4>Sources</h4><ol class="sources">${sourcesHtml}</ol></section>` : ""}
     <div class="detail-actions">
       <a class="btn" href="${gmaps}" target="_blank" rel="noopener">Directions</a>
-      <a class="btn btn-secondary" href="${site.waarnemingUrl}" target="_blank" rel="noopener">waarneming.nl (10 km)</a>
+      <a class="btn btn-secondary" href="${observationUrl(site.lat, site.lng)}" target="_blank" rel="noopener">observation.org (10 km)</a>
       ${site.website ? `<a class="btn btn-secondary" href="${site.website}" target="_blank" rel="noopener">Official site</a>` : ""}
     </div>
   `;
