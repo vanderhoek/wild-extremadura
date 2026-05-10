@@ -244,33 +244,6 @@ function escapeHtml(s) {
 // ---------- Initial render ----------
 applyFilters();
 
-// ---------- PWA install prompt ----------
-let deferredPrompt = null;
-const installBanner = document.getElementById("install-banner");
-const installBtn = document.getElementById("install-btn");
-const installDismiss = document.getElementById("install-dismiss");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (!localStorage.getItem("install-dismissed")) {
-    installBanner.hidden = false;
-  }
-});
-
-installBtn?.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  installBanner.hidden = true;
-});
-
-installDismiss?.addEventListener("click", () => {
-  installBanner.hidden = true;
-  localStorage.setItem("install-dismissed", "1");
-});
-
 // ---------- Service worker ----------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
